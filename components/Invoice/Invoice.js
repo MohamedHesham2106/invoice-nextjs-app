@@ -1,9 +1,8 @@
-import classes from "./Invoice.module.css";
 import InvoiceContent from "./InvoiceContent";
 import InvoiceHeader from "./InvoiceHeader";
 const Invoice = () => {
   return (
-    <section className={classes.container}>
+    <section className="main_container">
       <InvoiceHeader />
       <InvoiceContent />
     </section>

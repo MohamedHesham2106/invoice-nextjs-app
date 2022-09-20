@@ -14,27 +14,7 @@
   border: 1px solid var(--primary-color);
   transform: scaleY(1.05);
 }
-.pending_status,
-.paid_status,
-.draft_status,
-.edit_btn,
-.delete_btn,
-.mark_as-btn,
-.draft_btn {
-  padding: 10px 25px;
-  width: 100px;
-  border-radius: 5px;
-  font-size: 0.8rem;
-  border: none;
-  outline: none;
-  cursor: pointer;
-  font-weight: 500;
-}
-.paid_status {
-  background: var(--paid-status-bg);
-  color: var(--paid-status-color);
-}
-.pending_status {
-  background: var(--pending-status-bg);
-  color: var(--pending-status-color);
+
+.container {
+  padding-bottom: 200px !important;
 }

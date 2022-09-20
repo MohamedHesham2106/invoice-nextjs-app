@@ -18,7 +18,7 @@ const InvoiceContent = () => {
             <h3 className={classes.total}>$569</h3>
           </div>
           <div>
-            <button className={classes["pending_status"]}>pending</button>
+            <button className="pending_status">pending</button>
           </div>
         </div>
       </Link>

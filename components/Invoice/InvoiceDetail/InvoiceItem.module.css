@@ -1,0 +1,21 @@
+.item {
+  background: #252945;
+  padding: 30px;
+  border-radius: 7px 7px 0 0;
+}
+.list {
+  list-style: none;
+}
+.list_item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+}
+.item_box {
+  width: 25% !important;
+  text-align: right !important;
+}
+.item_name {
+  width: 50% !important;
+}
