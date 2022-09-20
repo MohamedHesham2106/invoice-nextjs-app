@@ -29,7 +29,8 @@ a {
   color: var(--small-text-color);
 }
 
-p {
+p,
+label {
   font-size: 0.8rem;
   color: var(--small-text-color);
 }
@@ -49,11 +50,7 @@ h6 {
   cursor: pointer;
 }
 .main_container {
-  position: absolute;
-  top: 0;
-  left: 10%;
-  width: calc(100% - 13%);
-  padding: 30px 0;
+  padding: 3rem 5rem;
 }
 .pending_status,
 .paid_status,
@@ -92,4 +89,10 @@ h6 {
 .edit_btn {
   background: var(--edit-btn-bg);
   color: #fff;
+}
+.draft_btn {
+  background: #1f2c3f;
+  color: #fff;
+  margin-right: 30px;
+  width: 150px !important;
 }
