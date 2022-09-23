@@ -1,5 +1,6 @@
 import classes from "./InvoiceItem.module.css";
-const InvoiceItem = () => {
+const InvoiceItem = ({ items }) => {
+  console.log(items);
   return (
     <section className={classes.item}>
       <ul className={classes.list}>
@@ -10,21 +11,22 @@ const InvoiceItem = () => {
           <p className={classes["item_box"]}>Total</p>
         </li>
 
-        <li className={classes["list_item"]}>
-          <div className={classes["item_name"]}>
-            <h5>Ecommerce Website</h5>
-          </div>
-          <div className={classes["item_box"]}>
-            <p>2</p>
-          </div>
-          <div className={classes["item_box"]}>
-            <p>$250</p>
-          </div>
-          <div className={classes["item_box"]}>
-            <h5>$500</h5>
-          </div>
-        </li>
-        
+        {items?.map((item) => (
+          <li className={classes["list_item"]} key={item.id}>
+            <div className={classes["item_name"]}>
+              <h5>{item.name}</h5>
+            </div>
+            <div className={classes["item_box"]}>
+              <p>{item.quantity}</p>
+            </div>
+            <div className={classes["item_box"]}>
+              <p>${item.price}</p>
+            </div>
+            <div className={classes["item_box"]}>
+              <h5>${item.total}</h5>
+            </div>
+          </li>
+        ))}
       </ul>
     </section>
   );

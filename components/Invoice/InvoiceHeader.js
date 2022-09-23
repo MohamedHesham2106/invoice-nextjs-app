@@ -1,7 +1,6 @@
 import classes from "./InvoiceHeader.module.css";
-import Link from "next/link";
 import { useRouter } from "next/router";
-const InvoiceHeader = () => {
+const InvoiceHeader = ({ length }) => {
   const router = useRouter();
 
   const navigate = () => {
@@ -11,7 +10,7 @@ const InvoiceHeader = () => {
     <div className={classes.header}>
       <div className={classes.logo}>
         <h3>Invoice</h3>
-        <p>There are total 7 invoices</p>
+        <p>There are total {length} invoices</p>
       </div>
       <button className="btn" onClick={navigate}>
         Add New

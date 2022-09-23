@@ -1,10 +1,10 @@
 import InvoiceContent from "./InvoiceContent";
 import InvoiceHeader from "./InvoiceHeader";
-const Invoice = () => {
+const Invoice = ({ data }) => {
   return (
     <section className="main_container">
-      <InvoiceHeader />
-      <InvoiceContent />
+      <InvoiceHeader length={data.length} />
+      <InvoiceContent data={data} />
     </section>
   );
 };

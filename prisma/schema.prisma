@@ -25,14 +25,15 @@ model Invoice {
   createdAt        DateTime @default(now())
   paymentDue       DateTime
   paymentTerms     String
+  description      String
   status           status
   total            Int
-  items            Items[] 
+  items            Items[]
 }
 
 model Items {
   id        String  @id @default(cuid())
-  invoice   Invoice @relation(fields: [invoiceId], references: [id] ,onDelete: Cascade)
+  invoice   Invoice @relation(fields: [invoiceId], references: [id], onDelete: Cascade)
   invoiceId String
   quantity  Int
   name      String

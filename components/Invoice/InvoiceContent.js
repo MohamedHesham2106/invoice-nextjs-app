@@ -1,27 +1,40 @@
 import classes from "./InvoiceContent.module.css";
 import Link from "next/link";
-const InvoiceContent = () => {
+
+const InvoiceContent = ({ data }) => {
   return (
     <div className={classes.container}>
-      <Link href={`invoice/id`} passRef>
-        <div className={classes.item}>
-          <div>
-            <h5 className={classes.id}>RT59F0</h5>
+      {data.map((invoice, i) => (
+        <Link href={`invoice/${invoice.id}`} passRef key={invoice.id}>
+          <div className={classes.item}>
+            <div>
+              <h5 className={classes.id}>#{i}</h5>
+            </div>
+            <div>
+              <h6 className={classes.client}>{invoice.clientName}</h6>
+            </div>
+            <div>
+              <p className={classes.date}>{invoice.createdAt}</p>
+            </div>
+            <div>
+              <h3 className={classes.total}>${invoice.total}</h3>
+            </div>
+            <div>
+              <button
+                className={`${
+                  invoice.status === "paid"
+                    ? "paid_status"
+                    : invoice.status === "pending"
+                    ? "pending_status"
+                    : "draft_status"
+                }`}
+              >
+                {invoice.status}
+              </button>
+            </div>
           </div>
-          <div>
-            <h6 className={classes.client}>Mohamed Hesham</h6>
-          </div>
-          <div>
-            <p className={classes.date}>29-07-2022</p>
-          </div>
-          <div>
-            <h3 className={classes.total}>$569</h3>
-          </div>
-          <div>
-            <button className="pending_status">pending</button>
-          </div>
-        </div>
-      </Link>
+        </Link>
+      ))}
     </div>
   );
 };

@@ -44,6 +44,7 @@ async function handler(req, res) {
         paymentDue: new Date(invoice.paymentDue),
         paymentTerms: invoice.paymentTerms,
         status: invoice.status,
+        description: invoice.description,
         total: invoice.total,
       },
       select: {
