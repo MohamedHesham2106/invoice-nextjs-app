@@ -52,15 +52,17 @@ async function handler(req, res) {
       },
     });
     for (const item of Items) {
-      await prisma.items.create({
-        data: {
-          invoiceId: newInvoice.id,
-          quantity: +item.quantity,
-          name: item.itemName,
-          total: +item.total,
-          price: +item.price,
-        },
-      });
+      if (item.name !== "") {
+        await prisma.items.create({
+          data: {
+            invoiceId: newInvoice.id,
+            quantity: +item.quantity,
+            name: item.name,
+            total: +item.total,
+            price: +item.price,
+          },
+        });
+      }
     }
     res.status(200).json({ message: "Added invoice successfully" });
   } catch (error) {

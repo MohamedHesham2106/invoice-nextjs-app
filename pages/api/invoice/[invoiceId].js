@@ -1,6 +1,9 @@
 import { PrismaClient } from "@prisma/client";
 
 async function handler(req, res) {
+  if (req.method === "GET" || req.method === "POST" || req.method === "PATCH") {
+    return;
+  }
   const prisma = new PrismaClient();
   const { invoiceId } = req.query;
   if (req.method === "PUT") {

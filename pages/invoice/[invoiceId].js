@@ -1,4 +1,3 @@
-import React from "react";
 import { PrismaClient } from "@prisma/client";
 import InvoiceDetail from "../../components/Invoice/InvoiceDetail/InvoiceDetail";
 const InvoiceDetails = ({ data }) => {
@@ -43,8 +42,8 @@ export async function getStaticProps({ params }) {
           clientName: invoice.clientName,
           clientEmail: invoice.clientEmail,
           description: invoice.description,
-          createdAt: new Date(invoice.createdAt).toLocaleDateString("en-US"),
-          paymentDue: new Date(invoice.paymentDue).toLocaleDateString("en-US"),
+          createdAt: new Date(invoice.createdAt).toLocaleDateString("en-GB"),
+          paymentDue: new Date(invoice.paymentDue).toLocaleDateString("en-GB"),
           items: invoice.items,
           total: invoice.total,
           status: invoice.status,

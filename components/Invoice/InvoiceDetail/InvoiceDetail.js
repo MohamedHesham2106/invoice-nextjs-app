@@ -14,7 +14,6 @@ const InvoiceDetail = (props) => {
       });
       const data = await response.json();
       toast.success(data.message);
-      router.reload(window.location.pathname);
     } catch (error) {
       toast.error(error.message);
     }

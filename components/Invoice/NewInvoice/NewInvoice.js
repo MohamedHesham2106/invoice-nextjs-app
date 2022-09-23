@@ -24,7 +24,7 @@ const NewInvoice = () => {
 
   // add product items
   const addItemHandler = () => {
-    setItems([...items, { itemName: "", quantity: 0, price: 0, total: 0 }]);
+    setItems([...items, { name: "", quantity: 0, price: 0, total: 0 }]);
     console.log(items);
   };
   const changeHandler = (event, i) => {
@@ -178,10 +178,10 @@ const NewInvoice = () => {
                 className={`${classes["form_group"]} ${classes["inline_form-group"]}`}
               >
                 <div>
-                  <label htmlFor="itemName">Item Name</label>
+                  <label htmlFor="name">Item Name</label>
                   <input
                     type="text"
-                    name="itemName"
+                    name="name"
                     onChange={(e) => changeHandler(e, i)}
                   />
                 </div>
@@ -205,7 +205,10 @@ const NewInvoice = () => {
                   <p>Total</p>
                   <h4>${item.total}</h4>
                 </div>
-                <button className="edit_btn" onClick={deleteItemHandler}>
+                <button
+                  className="edit_btn"
+                  onClick={() => deleteItemHandler(i)}
+                >
                   Delete
                 </button>
               </div>

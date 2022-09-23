@@ -8,13 +8,13 @@ const InvoiceContent = ({ data }) => {
         <Link href={`invoice/${invoice.id}`} passRef key={invoice.id}>
           <div className={classes.item}>
             <div>
-              <h5 className={classes.id}>#{i}</h5>
+              <h5 className={classes.id}>#{i + 1}</h5>
             </div>
             <div>
               <h6 className={classes.client}>{invoice.clientName}</h6>
             </div>
             <div>
-              <p className={classes.date}>{invoice.createdAt}</p>
+              <p className={classes.date}>{invoice.paymentDue}</p>
             </div>
             <div>
               <h3 className={classes.total}>${invoice.total}</h3>

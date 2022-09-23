@@ -18,7 +18,7 @@ export async function getStaticProps() {
         return {
           id: invoice.id,
           clientName: invoice.clientName,
-          createdAt: new Date(invoice.createdAt).toLocaleDateString("en-US"),
+          paymentDue: new Date(invoice.paymentDue).toLocaleDateString("en-GB"),
           total: invoice.total,
           status: invoice.status,
         };
