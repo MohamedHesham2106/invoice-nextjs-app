@@ -1,6 +1,6 @@
 import classes from "./InvoiceItem.module.css";
 const InvoiceItem = ({ items }) => {
-  console.log(items);
+
   return (
     <section className={classes.item}>
       <ul className={classes.list}>

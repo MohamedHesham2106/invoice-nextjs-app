@@ -20,15 +20,7 @@ const InvoiceContent = ({ data }) => {
               <h3 className={classes.total}>${invoice.total}</h3>
             </div>
             <div>
-              <button
-                className={`${
-                  invoice.status === "paid"
-                    ? "paid_status"
-                    : invoice.status === "pending"
-                    ? "pending_status"
-                    : "draft_status"
-                }`}
-              >
+              <button className={`${invoice.status}_status`}>
                 {invoice.status}
               </button>
             </div>

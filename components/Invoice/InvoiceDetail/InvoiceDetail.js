@@ -1,11 +1,37 @@
 import classes from "./InvoiceDetail.module.css";
 import { useRouter } from "next/router";
 import InvoiceItem from "./InvoiceItem";
+import { toast } from "react-toastify";
 const InvoiceDetail = (props) => {
   const router = useRouter();
   const data = props.data[0];
-  console.log(data);
   const goBack = () => router.push("/");
+
+  const MarkAsPaid = async () => {
+    try {
+      const response = await fetch(`/api/invoice/${router.query.invoiceId}`, {
+        method: "PUT",
+      });
+      const data = await response.json();
+      toast.success(data.message);
+      router.reload(window.location.pathname);
+    } catch (error) {
+      toast.error(error.message);
+    }
+  };
+
+  const deleteInvoiceHandler = async () => {
+    try {
+      const response = await fetch(`/api/invoice/${router.query.invoiceId}`, {
+        method: "DELETE",
+      });
+      const data = await response.json();
+      toast.success(data.message);
+      router.push("/");
+    } catch (error) {
+      toast.error(error.message);
+    }
+  };
 
   return (
     <section className="main_container">
@@ -15,17 +41,7 @@ const InvoiceDetail = (props) => {
       <div className={classes["details_header"]}>
         <div className={classes["details_status"]}>
           <p>Status</p>
-          <button
-            className={`${
-              data.status === "paid"
-                ? "paid_status"
-                : data.status === "pending"
-                ? "pending_status"
-                : "draft_status"
-            }`}
-          >
-            {data.status}
-          </button>
+          <button className={`${data.status}_status`}>{data.status}</button>
         </div>
         <div className={classes["details_btn"]}>
           <button
@@ -34,8 +50,17 @@ const InvoiceDetail = (props) => {
           >
             Edit
           </button>
-          <button className="delete_btn">Delete</button>
-          <button className="mark_as-btn">Mark as Paid</button>
+          <button className="delete_btn" onClick={deleteInvoiceHandler}>
+            Delete
+          </button>
+          <button
+            className={`${
+              data.status === "paid" || data.status === "draft" ? "disable" : ""
+            } mark_as-btn`}
+            onClick={MarkAsPaid}
+          >
+            Mark as Paid
+          </button>
         </div>
       </div>
       <div className={classes.details}>
