@@ -5,10 +5,10 @@ const Authentication = () => {
   return (
     <Fragment>
       <Head>
-        <title>Log in to White Clover / White Clover</title>
+        <title>Log in to Groove / Groove</title>
         <meta
           name="description"
-          content="White Clover social media app for posting"
+          content="Groove app for managing your invoices and payments"
         />
       </Head>
       <AuthForm />

@@ -2,10 +2,15 @@ import { PrismaClient } from "@prisma/client";
 import InvoiceDetail from "../../components/Invoice/InvoiceDetail/InvoiceDetail";
 import { getSession } from "next-auth/react";
 import { Fragment } from "react";
+import Head from "next/head";
 
 const InvoiceDetails = ({ data }) => {
   return (
     <Fragment>
+      <Head>
+        <title>Invoice #{data.id.substr(0, 6).toUpperCase()} / Groove</title>
+        <meta name="description" content={data.description} />
+      </Head>
       <InvoiceDetail data={data} />
     </Fragment>
   );

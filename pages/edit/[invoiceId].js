@@ -1,11 +1,18 @@
-
 import EditInvoice from "../../components/Invoice/NewInvoice/EditInvoice";
 import { PrismaClient } from "@prisma/client";
+import Head from "next/head";
+import { Fragment } from "react";
 const Edit = ({ data }) => {
   return (
-    <div className="main_container">
-      <EditInvoice data={data} />
-    </div>
+    <Fragment>
+      <Head>
+        <title>Edit #{data.id.substr(0, 6).toUpperCase()} / Groove</title>
+        <meta name="description" content={data.description} />
+      </Head>
+      <div className="main_container">
+        <EditInvoice data={data} />
+      </div>
+    </Fragment>
   );
 };
 export async function getStaticPaths() {

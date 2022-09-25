@@ -1,5 +1,5 @@
 import { PrismaClient } from "@prisma/client";
-import { getSession } from "next-auth/session";
+import { getSession } from "next-auth/react";
 async function handler(req, res) {
   const { invoiceId } = req.query;
   const session = await getSession({ req });
