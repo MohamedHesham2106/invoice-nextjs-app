@@ -1,8 +1,11 @@
 import { PrismaClient } from "@prisma/client";
-
+import { getSession } from "next-auth/session";
 async function handler(req, res) {
   const { invoiceId } = req.query;
-
+  const session = await getSession({ req });
+  if (!session) {
+    return res.status(401).json({ message: "Unauthenticated user." });
+  }
   const prisma = new PrismaClient();
   if (req.method === "PUT") {
     try {
