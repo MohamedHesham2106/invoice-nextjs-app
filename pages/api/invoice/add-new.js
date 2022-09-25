@@ -1,8 +1,12 @@
 import { PrismaClient } from "@prisma/client";
-
+import { getSession } from "next-auth/react";
 async function handler(req, res) {
   if (req.method !== "POST") {
     return;
+  }
+  const session = await getSession({ req });
+  if (!session) {
+    return res.status(401).json({ message: "Unauthenticated user." });
   }
   const invoice = {
     senderAddress: {
@@ -29,6 +33,14 @@ async function handler(req, res) {
   const Items = req.body.items;
   const prisma = new PrismaClient();
   try {
+    const user = await prisma.user.findFirst({
+      where: {
+        email: session.user.email,
+      },
+      select: {
+        id: true,
+      },
+    });
     const newInvoice = await prisma.invoice.create({
       data: {
         senderStreet: invoice.senderAddress.street,
@@ -46,6 +58,7 @@ async function handler(req, res) {
         status: invoice.status,
         description: invoice.description,
         total: invoice.total,
+        userId: user.id,
       },
       select: {
         id: true,

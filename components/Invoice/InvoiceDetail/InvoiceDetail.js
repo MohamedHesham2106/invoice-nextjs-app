@@ -2,9 +2,9 @@ import classes from "./InvoiceDetail.module.css";
 import { useRouter } from "next/router";
 import InvoiceItem from "./InvoiceItem";
 import { toast } from "react-toastify";
-const InvoiceDetail = (props) => {
+const InvoiceDetail = ({ data }) => {
   const router = useRouter();
-  const data = props.data[0];
+
   const goBack = () => router.push("/");
 
   const MarkAsPaid = async () => {
@@ -14,6 +14,7 @@ const InvoiceDetail = (props) => {
       });
       const data = await response.json();
       toast.success(data.message);
+      router.reload(window.location.pathname);
     } catch (error) {
       toast.error(error.message);
     }

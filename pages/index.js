@@ -1,6 +1,7 @@
 import { Fragment } from "react";
 import Invoice from "../components/Invoice/Invoice";
 import { PrismaClient } from "@prisma/client";
+import { getSession } from "next-auth/react";
 export default function Home({ data }) {
   return (
     <Fragment>
@@ -8,9 +9,26 @@ export default function Home({ data }) {
     </Fragment>
   );
 }
-export async function getStaticProps() {
+export async function getServerSideProps({ req }) {
   const prisma = new PrismaClient();
-  const invoices = await prisma.invoice.findMany();
+  const session = await getSession({ req });
+  if (!session) {
+    return {
+      redirect: {
+        destination: "/auth",
+      },
+    };
+  }
+  const user = await prisma.user.findFirst({
+    where: {
+      email: session.user.email,
+    },
+  });
+  const invoices = await prisma.invoice.findMany({
+    where: {
+      userId: user.id,
+    },
+  });
 
   return {
     props: {
